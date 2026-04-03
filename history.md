@@ -143,3 +143,14 @@
   - environment files
   - build outputs
   - common key/certificate files
+
+### README refresh
+
+- Rewrote [README.md](/home/raypamber/code/react-native/README.md) to match the current GitHub-pushed project state instead of the earlier placeholder description.
+- The README now documents:
+  - the current GNDEC-inspired app direction
+  - the active screen structure
+  - the Expo / Router / NativeWind stack
+  - local development commands
+  - the known `--tunnel` / ngrok issue and LAN fallback
+  - current limitations and next improvements
