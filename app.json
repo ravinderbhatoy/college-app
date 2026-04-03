@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "GNDEC College App",
+    "slug": "gndec-college-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "gndeccollegeapp",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#f5efe6"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f5efe6"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+  
+}
