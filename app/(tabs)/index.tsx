@@ -1,70 +1,81 @@
+import { useRouter } from "expo-router";
 import { View } from "react-native";
-import { Card, Chip, HeroCard, Page, SectionTitle } from "../../components/ui";
+
 import {
-  gndecMetrics,
-  homeHighlights,
-  notices,
-  quickActions,
-} from "../../data/college-data";
+  Card,
+  HeroCard,
+  Page,
+  QuickActionCard,
+  SectionTitle,
+} from "../../components/ui";
+import { events, notices, quickActions } from "../../data/college-data";
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <Page
-      eyebrow="Guru Nanak Dev Engineering College"
-      title="Student Dashboard"
-      subtitle="A GNDEC-first mobile home focused on notices, student services, academics, and campus access."
+      eyebrow="Student Home"
+      title="Everything important in a few taps."
+      subtitle="Keep the app centered on notices and events, then surface timetable, contacts, and login as quick utilities."
+      headerAction={{
+        icon: "person-circle-outline",
+        label: "Open profile placeholder",
+        onPress: () => router.push("/profile"),
+      }}
     >
       <HeroCard
-        tag="Inspired by gndec.ac.in"
-        title="Important student information should be faster here than on the website."
-        text="The app now follows the site’s strongest sections: student corner, information corner, departments, facilities, and helplines."
+        tag="V1 Focus"
+        title="A smaller app is easier to navigate and easier to maintain."
+        text="This version keeps only the student flows that matter right now instead of recreating the full college website."
       />
 
       <SectionTitle
-        title="Quick Access"
-        subtitle="The homepage priorities students are most likely to need daily"
+        title="Quick Actions"
+        subtitle="Low-frequency utilities belong here, not in the tab bar."
       />
-      <View className="mb-5 flex-row flex-wrap gap-2.5">
-        {quickActions.map((item) => (
-          <Chip key={item} label={item} active />
+      <View className="mb-6 flex-row flex-wrap gap-3">
+        {quickActions.map((action) => (
+          <QuickActionCard
+            key={action.label}
+            icon={action.icon}
+            label={action.label}
+            onPress={() => router.push(action.href)}
+          />
         ))}
       </View>
-
-      <SectionTitle
-        title="GNDEC At A Glance"
-        subtitle="Institutional identity condensed for mobile"
-      />
-      <View className="mb-2 flex-row flex-wrap gap-3">
-        {gndecMetrics.map((metric) => (
-          <View
-            key={metric.label}
-            className="min-w-[100px] flex-1 rounded-[20px] border border-border bg-card p-4"
-          >
-            <Chip label={metric.label} />
-            <Card title={metric.value} />
-          </View>
-        ))}
-      </View>
-
-      <SectionTitle
-        title="Student Priorities"
-        subtitle="What the website suggests should be prominent in the app"
-      />
-      {homeHighlights.map((item) => (
-        <Card key={item.title} title={item.title} meta={item.text} />
-      ))}
 
       <SectionTitle
         title="Latest Notices"
-        subtitle="Student corner and public corner style updates"
+        subtitle="A short preview from the main notices feed."
+        actionLabel="View all"
+        onActionPress={() => router.push("/notices")}
       />
       {notices.slice(0, 3).map((notice) => (
         <Card
-          key={notice.title}
+          key={notice.id}
           title={notice.title}
           meta={notice.date}
-          tag={notice.tag}
-          showTagRow
+          tag={notice.pinned ? "Pinned" : notice.category}
+          body={notice.excerpt}
+          onPress={() => router.push("/notices")}
+        />
+      ))}
+
+      <SectionTitle
+        title="Upcoming Events"
+        subtitle="Campus highlights students are likely to check before they happen."
+        actionLabel="View all"
+        onActionPress={() => router.push("/events")}
+      />
+      {events.slice(0, 2).map((event) => (
+        <Card
+          key={event.id}
+          title={event.title}
+          meta={event.date}
+          leading={event.venue}
+          body={event.description}
+          onPress={() => router.push("/events")}
         />
       ))}
     </Page>

@@ -1,6 +1,21 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
 import { colors } from '../../constants/theme';
+
+function TabIcon({
+  color,
+  focused,
+  name,
+  outlineName,
+}: {
+  color: string;
+  focused: boolean;
+  name: keyof typeof Ionicons.glyphMap;
+  outlineName: keyof typeof Ionicons.glyphMap;
+}) {
+  return <Ionicons name={focused ? name : outlineName} size={20} color={color} />;
+}
 
 export default function TabsLayout() {
   return (
@@ -22,11 +37,46 @@ export default function TabsLayout() {
         },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="notices" options={{ title: 'Notices' }} />
-      <Tabs.Screen name="academics" options={{ title: 'Academics' }} />
-      <Tabs.Screen name="campus" options={{ title: 'Campus' }} />
-      <Tabs.Screen name="help" options={{ title: 'Help' }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="home" outlineName="home-outline" />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notices"
+        options={{
+          title: 'Notices',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+              color={color}
+              focused={focused}
+              name="notifications"
+              outlineName="notifications-outline"
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="events"
+        options={{
+          title: 'Events',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+              color={color}
+              focused={focused}
+              name="calendar"
+              outlineName="calendar-outline"
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen name="academics" options={{ href: null }} />
+      <Tabs.Screen name="campus" options={{ href: null }} />
+      <Tabs.Screen name="help" options={{ href: null }} />
     </Tabs>
   );
 }

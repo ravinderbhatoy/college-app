@@ -154,3 +154,41 @@
   - local development commands
   - the known `--tunnel` / ngrok issue and LAN fallback
   - current limitations and next improvements
+
+### GNDEC logo integration
+
+- Located the official GNDEC logo asset from the college website and added it to the shared page shell in [components/ui.tsx](/home/raypamber/code/react-native/components/ui.tsx).
+- The logo now appears at the top of tab screens so the app carries GNDEC branding consistently across the current experience.
+- Replaced the remote website logo reference with the user-provided local asset [gnelogo.png](/home/raypamber/code/react-native/gnelogo.png) so the app uses the correct bundled logo file.
+
+### Tab bar icons
+
+- Added bottom-tab icons in [app/(tabs)/_layout.tsx](/home/raypamber/code/react-native/app/(tabs)/_layout.tsx) using Expo Ionicons.
+- The tabs now show icons for:
+  - Home
+  - Notices
+  - Academics
+  - Campus
+  - Help
+
+### Programs offered in Academics
+
+- Extracted the current GNDEC programs offered list from the official college website and added it to [data/college-data.ts](/home/raypamber/code/react-native/data/college-data.ts).
+- Updated [app/(tabs)/academics.tsx](/home/raypamber/code/react-native/app/(tabs)/academics.tsx) to show grouped programs with duration and intake instead of only a generic placeholder reference.
+
+### GNDEC-inspired color theme
+
+- Replaced the earlier green-brown demo palette with a GNDEC-inspired theme based on the logo colors and user-approved green accent.
+- Updated shared tokens in [constants/theme.ts](/home/raypamber/code/react-native/constants/theme.ts) and [tailwind.config.js](/home/raypamber/code/react-native/tailwind.config.js).
+- Updated reusable UI styles in [components/ui.tsx](/home/raypamber/code/react-native/components/ui.tsx) so hero sections, chips, info cards, and shared surfaces now use the new navy, red, green, and off-white palette.
+
+### Expo SDK 54 dependency alignment
+
+- Updated package version ranges in [package.json](/home/raypamber/code/react-native/package.json) to match Expo SDK 54 compatibility guidance for the packages that were producing warnings.
+- Adjusted:
+  - `react-native-reanimated` to `~4.1.1`
+  - `@types/react` to `~19.1.10`
+  - `babel-preset-expo` to `~54.0.10`
+  - `typescript` to `~5.9.2`
+- Installed dependencies and verified the resolved versions are Expo-compatible patch releases.
+- Verified the project still type-checks with `npx tsc --noEmit`.
