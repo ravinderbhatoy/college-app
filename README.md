@@ -65,7 +65,7 @@ Student dashboard with:
 - one featured notice highlight
 - upcoming events preview
 
-![Home screen](./screenshots/Home.png)
+<img src="./screenshots/Home.png" alt="Home screen" width="320" />
 
 ### Notices
 
@@ -76,7 +76,7 @@ Focused on:
 - pinned notices shown with a pin icon
 - pinned notices sorted to the top
 
-![Notices screen](./screenshots/notices.png)
+<img src="./screenshots/notices.png" alt="Notices screen" width="320" />
 
 ### Events
 
@@ -85,7 +85,7 @@ Includes:
 - upcoming campus events
 - date and venue shown together in the card header
 
-![Events screen](./screenshots/events.png)
+<img src="./screenshots/events.png" alt="Events screen" width="320" />
 
 ### Placement
 
@@ -96,7 +96,7 @@ Includes:
 - eligibility notes
 - TPO contact details
 
-![Placement screen](./screenshots/tandp.png)
+<img src="./screenshots/tandp.png" alt="Placement screen" width="320" />
 
 ### Utility screens
 
