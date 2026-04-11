@@ -2,28 +2,27 @@
 
 A React Native mobile app concept for **Guru Nanak Dev Engineering College, Ludhiana**, built with **Expo**, **Expo Router**, and **NativeWind**.
 
-This project is designed as a student-first campus app inspired by the official GNDEC website. Instead of copying the dense desktop layout, it reorganizes the college’s key sections into a simpler mobile experience focused on daily student needs.
+This project is designed as a student-first campus app inspired by the official GNDEC website. Instead of copying the dense desktop layout, it narrows the mobile app down to the information students are most likely to check frequently.
 
 ## Current app focus
 
 - Home dashboard
 - Notice board
-- Academics tab with timetable and academic links
-- Campus tab with departments and facilities
-- Help desk tab with admission and support contacts
+- Events tab
+- Training & Placement tab
+- Timetable utility screen
+- Contacts utility screen
+- Profile/auth placeholder screen
 
 ## Design direction
 
-The current information architecture is based on the GNDEC website’s strongest student-facing sections:
+The current information architecture is intentionally smaller than the website:
 
-- Student Corner
-- Information Corner
-- Help Desk
-- Departments
-- Facilities
-- Institutional identity and trust signals
-
-The app aims to make those sections easier to access on mobile, with shorter navigation paths and cleaner content grouping.
+- high-frequency student updates stay in tabs
+- lower-frequency tools stay in Home quick actions
+- notices can be `featured` to stand out visually
+- pinned notices surface a pin icon and sort to the top of the notices feed
+- placement gets its own tab because deadlines and drive updates are high priority
 
 ## Tech stack
 
@@ -43,9 +42,11 @@ app/
     _layout.tsx
     index.tsx
     notices.tsx
-    academics.tsx
-    campus.tsx
-    help.tsx
+    events.tsx
+    placement.tsx
+  contacts.tsx
+  profile.tsx
+  timetable.tsx
 components/
   ui.tsx
 constants/
@@ -60,43 +61,42 @@ data/
 
 Student dashboard with:
 
-- GNDEC identity snapshot
-- quick access shortcuts
-- student-priority highlights
-- latest notices
+- quick actions for timetable, contacts, and profile/login placeholder
+- one featured notice highlight
+- upcoming events preview
 
 ### Notices
 
 Focused on:
 
-- student-corner style notices
-- fee and scholarship updates
-- public and information-corner style content
+- a complete notice feed
+- `featured` notices with stronger visual emphasis
+- pinned notices shown with a pin icon
+- pinned notices sorted to the top
 
-### Academics
-
-Includes:
-
-- weekly timetable
-- academic essentials
-- calendar-style links
-- information-corner items useful to students
-
-### Campus
+### Events
 
 Includes:
 
-- department groups
-- campus facilities
-- institutional highlights
+- upcoming campus events
+- date and venue shown together in the card header
 
-### Help
+### Placement
 
 Includes:
 
-- admission helplines
-- student support entries
-- grievance and anti-ragging style support references
+- placement updates and upcoming drives
+- form submission links
+- eligibility notes
+- TPO contact details
+
+### Utility screens
+
+Includes:
+
+- timetable selector
+- campus and support contacts
+- profile/auth placeholder for future login work
 
 ## Local development
 
@@ -136,13 +136,12 @@ This project has already shown tunnel startup issues locally, so LAN or emulator
 - No authentication
 - No admin panel
 - All app content is currently static
-- Notices, timetable, and support content are demo data shaped around GNDEC’s structure
+- Notice, event, placement, timetable, and contact content are demo data shaped around GNDEC’s structure
 
 ## Next improvements
 
-- Connect notices and academic updates to a backend
+- Add notice detail and event detail screens
+- Replace mock data with real college content sources
+- Connect notices and placement updates to a backend
 - Add student login
-- Add attendance, results, and fee status
-- Add push notifications for urgent notices
-- Add direct links to official GNDEC web resources
-- Refine the visual design to better match GNDEC branding
+- Add push notifications for urgent notices and placement updates
