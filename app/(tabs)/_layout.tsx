@@ -74,6 +74,20 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="placement"
+        options={{
+          title: 'Placement',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+              color={color}
+              focused={focused}
+              name="briefcase"
+              outlineName="briefcase-outline"
+            />
+          ),
+        }}
+      />
       <Tabs.Screen name="academics" options={{ href: null }} />
       <Tabs.Screen name="campus" options={{ href: null }} />
       <Tabs.Screen name="help" options={{ href: null }} />

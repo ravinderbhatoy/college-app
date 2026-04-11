@@ -8,7 +8,10 @@ export default function ProfileScreen() {
       title="Profile"
       subtitle="A placeholder shell for future authentication and student preferences."
     >
-      <EmptyState title={authPlaceholder.title} text={authPlaceholder.message} />
+      <EmptyState
+        title={authPlaceholder.title}
+        text={authPlaceholder.message}
+      />
 
       <SectionTitle
         title="Coming Later"

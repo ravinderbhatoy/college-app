@@ -1,39 +1,22 @@
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 
-import {
-  Card,
-  HeroCard,
-  Page,
-  QuickActionCard,
-  SectionTitle,
-} from "../../components/ui";
+import { Card, Page, QuickActionCard, SectionTitle } from "../../components/ui";
 import { events, notices, quickActions } from "../../data/college-data";
 
 export default function HomeScreen() {
   const router = useRouter();
+  const featuredNotice = notices.find((notice) => notice.featured);
 
   return (
     <Page
-      eyebrow="Student Home"
-      title="Everything important in a few taps."
-      subtitle="Keep the app centered on notices and events, then surface timetable, contacts, and login as quick utilities."
       headerAction={{
         icon: "person-circle-outline",
         label: "Open profile placeholder",
         onPress: () => router.push("/profile"),
       }}
     >
-      <HeroCard
-        tag="V1 Focus"
-        title="A smaller app is easier to navigate and easier to maintain."
-        text="This version keeps only the student flows that matter right now instead of recreating the full college website."
-      />
-
-      <SectionTitle
-        title="Quick Actions"
-        subtitle="Low-frequency utilities belong here, not in the tab bar."
-      />
+      <SectionTitle title="Quick Actions" />
       <View className="mb-6 flex-row flex-wrap gap-3">
         {quickActions.map((action) => (
           <QuickActionCard
@@ -45,22 +28,23 @@ export default function HomeScreen() {
         ))}
       </View>
 
-      <SectionTitle
-        title="Latest Notices"
-        subtitle="A short preview from the main notices feed."
-        actionLabel="View all"
-        onActionPress={() => router.push("/notices")}
-      />
-      {notices.slice(0, 3).map((notice) => (
-        <Card
-          key={notice.id}
-          title={notice.title}
-          meta={notice.date}
-          tag={notice.pinned ? "Pinned" : notice.category}
-          body={notice.excerpt}
-          onPress={() => router.push("/notices")}
-        />
-      ))}
+      {featuredNotice ? (
+        <>
+          <SectionTitle
+            title="Featured"
+            subtitle="Use this when one update needs stronger emphasis than the rest of the feed."
+          />
+          <Card
+            title={featuredNotice.title}
+            meta={featuredNotice.date}
+            tag={featuredNotice.category}
+            body={featuredNotice.excerpt}
+            featured
+            pinned={featuredNotice.pinned}
+            onPress={() => router.push("/notices")}
+          />
+        </>
+      ) : null}
 
       <SectionTitle
         title="Upcoming Events"

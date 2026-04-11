@@ -8,10 +8,6 @@ export default function EventsScreen() {
       title="Upcoming Events"
       subtitle="A dedicated stream for upcoming campus activity without mixing it into utility screens."
     >
-      <SectionTitle
-        title="What’s Coming Up"
-        subtitle="Poster-style visuals can come later. The structure matters first."
-      />
       {events.map((event) => (
         <Card
           key={event.id}

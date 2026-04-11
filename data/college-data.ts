@@ -5,6 +5,7 @@ export type Notice = {
   category: string;
   excerpt: string;
   pinned?: boolean;
+  featured?: boolean;
 };
 
 export type Event = {
@@ -13,6 +14,31 @@ export type Event = {
   date: string;
   venue: string;
   description: string;
+};
+
+export type PlacementUpdate = {
+  id: string;
+  title: string;
+  date: string;
+  company: string;
+  summary: string;
+  pinned?: boolean;
+};
+
+export type PlacementForm = {
+  id: string;
+  title: string;
+  deadline: string;
+  href: string;
+  note: string;
+};
+
+export type TpoContact = {
+  id: string;
+  name: string;
+  role: string;
+  phone: string;
+  email: string;
 };
 
 export type QuickAction = {
@@ -72,7 +98,6 @@ export const notices: Notice[] = [
     category: "Academics",
     excerpt:
       "Students should complete the form submission and fee verification before the department deadline.",
-    pinned: true,
   },
   {
     id: "notice-scholarship",
@@ -81,6 +106,8 @@ export const notices: Notice[] = [
     category: "Scholarship",
     excerpt:
       "Eligible students must carry their latest marksheet, ID card, and bank details for verification.",
+    pinned: false,
+    featured: true,
   },
   {
     id: "notice-holiday",
@@ -124,6 +151,74 @@ export const events: Event[] = [
     venue: "Main Campus Ground",
     description:
       "Music, performances, and society showcases with open entry for students across departments.",
+  },
+];
+
+export const placementUpdates: PlacementUpdate[] = [
+  {
+    id: "placement-infosys",
+    title: "Infosys campus drive registration opens for 2026 batch",
+    date: "April 12, 2026",
+    company: "Infosys",
+    summary:
+      "Eligible final-year students should complete registration, upload their resume, and confirm academic details before screening slots are assigned.",
+    pinned: true,
+  },
+  {
+    id: "placement-tcs",
+    title: "TCS aptitude assessment scheduled for shortlisted students",
+    date: "April 16, 2026",
+    company: "TCS",
+    summary:
+      "The first round includes aptitude and verbal sections. Students should carry their college ID and reporting confirmation.",
+  },
+  {
+    id: "placement-wipro",
+    title: "Wipro pre-placement talk and application shortlist update",
+    date: "April 20, 2026",
+    company: "Wipro",
+    summary:
+      "The placement cell will share the final shortlist after the pre-placement talk in the seminar hall.",
+  },
+];
+
+export const placementForms: PlacementForm[] = [
+  {
+    id: "placement-form-resume-bank",
+    title: "Final-year resume bank submission",
+    deadline: "April 14, 2026",
+    href: "https://example.com/forms/resume-bank",
+    note: "Upload the latest one-page resume so the placement cell can circulate profiles to recruiters.",
+  },
+  {
+    id: "placement-form-infosys",
+    title: "Infosys drive application form",
+    deadline: "April 15, 2026",
+    href: "https://example.com/forms/infosys-drive",
+    note: "Students must verify CGPA, backlog status, and contact details before submitting the company form.",
+  },
+];
+
+export const placementEligibilityNotes = [
+  "Keep CGPA, active backlog status, and passing year clearly visible on every application.",
+  "Use the same phone number and email across the app, resume, and company forms to avoid mismatch.",
+  "Carry two printed resumes and your college ID on assessment and interview days.",
+];
+
+export const tpoContacts: TpoContact[] = [
+  {
+    id: "tpo-main",
+    name: "Training and Placement Office",
+    role: "Drive coordination and employer communication",
+    phone: "+91 161 506 4440",
+    email: "tpo@gne.edu.in",
+  },
+  {
+    id: "tpo-student",
+    name: "Placement Student Desk",
+    role: "Form submission help and shortlist query support",
+    phone: "+91 89685 53081",
+    email: "placementsupport@gne.edu.in",
   },
 ];
 

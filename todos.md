@@ -3,6 +3,7 @@
 ## Added
 
 - [x] Minimal 3-tab app structure: `Home`, `Notices`, `Events`
+- [x] Dedicated `Training & Placement` tab for high-priority student updates
 - [x] Home screen with quick actions for `Timetable`, `Contacts`, and `Login`
 - [x] Notices screen with pinned notice treatment
 - [x] Events screen for upcoming campus activity
@@ -13,11 +14,11 @@
 
 ## Planned Next
 
-- [ ] Training & Placement section
-- [ ] Define what placement should include in v1:
-  placement drives, company announcements, eligibility notes, and TPO contact details
-- [ ] Decide where placement should live:
-  separate tab, Home section, or utility screen
+- [x] Training & Placement section
+- [x] Define what placement should include in v1:
+  updates, upcoming placements, form submission links, company announcements, eligibility notes, and TPO contact details
+- [x] Decide where placement should live:
+  separate tab for high-importance student updates
 - [ ] Add notice detail screen
 - [ ] Add event detail screen
 - [ ] Replace mock data with real college content source
