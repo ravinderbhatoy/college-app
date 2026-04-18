@@ -18,9 +18,12 @@ export default function ContactsScreen() {
         <Card
           key={contact.id}
           title={contact.name}
-          meta={contact.phone}
           leading={contact.role}
-          body={contact.email ? `Email: ${contact.email}` : undefined}
+          body={
+            contact.email
+              ? `${contact.phone}\nEmail: ${contact.email}`
+              : contact.phone
+          }
           onPress={() => Linking.openURL(`tel:${contact.phone.replace(/\s+/g, "")}`)}
         />
       ))}

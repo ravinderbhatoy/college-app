@@ -10,9 +10,9 @@ This project is designed as a student-first campus app inspired by the official 
 - Notice board
 - Events tab
 - Training & Placement tab
+- Admin tab for local content publishing
 - Timetable utility screen
 - Contacts utility screen
-- Profile/auth placeholder screen
 
 ## Design direction
 
@@ -23,6 +23,8 @@ The current information architecture is intentionally smaller than the website:
 - notices can be `featured` to stand out visually
 - pinned notices surface a pin icon and sort to the top of the notices feed
 - placement gets its own tab because deadlines and drive updates are high priority
+- notice and event detail screens keep the bottom tab bar visible
+- admin content management is local-only for prototype use
 
 ## Tech stack
 
@@ -41,18 +43,30 @@ app/
   (tabs)/
     _layout.tsx
     index.tsx
-    notices.tsx
-    events.tsx
+    notices/
+      index.tsx
+      [id].tsx
+    events/
+      index.tsx
+      [id].tsx
     placement.tsx
+    admin/
+      index.tsx
+      notice.tsx
+      notice/[id].tsx
+      event.tsx
+      event/[id].tsx
   contacts.tsx
-  profile.tsx
   timetable.tsx
 components/
+  admin.tsx
   ui.tsx
 constants/
   theme.ts
 data/
   college-data.ts
+lib/
+  content-store.ts
 ```
 
 ## Screens
@@ -61,7 +75,7 @@ data/
 
 Student dashboard with:
 
-- quick actions for timetable, contacts, and profile/login placeholder
+- quick actions for timetable, contacts, and admin
 - one featured notice highlight
 - upcoming events preview
 
@@ -75,6 +89,7 @@ Focused on:
 - `featured` notices with stronger visual emphasis
 - pinned notices shown with a pin icon
 - pinned notices sorted to the top
+- notice detail view with bottom-tab navigation preserved
 
 <img src="./screenshots/notices.png" alt="Notices screen" width="320" />
 
@@ -84,6 +99,7 @@ Includes:
 
 - upcoming campus events
 - date and venue shown together in the card header
+- event detail view with bottom-tab navigation preserved
 
 <img src="./screenshots/events.png" alt="Events screen" width="320" />
 
@@ -98,13 +114,28 @@ Includes:
 
 <img src="./screenshots/tandp.png" alt="Placement screen" width="320" />
 
+### Admin
+
+Includes:
+
+- local admin login tab
+- create notice and create event flows
+- edit and delete for notices and events
+- markdown-like editor with helper buttons
+- live preview for heading, bullet, bold, and link formatting
+- local persistence using AsyncStorage
+
+Default demo login:
+
+- username: `admin`
+- password: `admin123`
+
 ### Utility screens
 
 Includes:
 
 - timetable selector
 - campus and support contacts
-- profile/auth placeholder for future login work
 
 ## Local development
 
@@ -141,15 +172,15 @@ This project has already shown tunnel startup issues locally, so LAN or emulator
 ## Current limitations
 
 - No backend or database yet
-- No authentication
-- No admin panel
-- All app content is currently static
-- Notice, event, placement, timetable, and contact content are demo data shaped around GNDEC’s structure
+- Admin login is demo-only and stored locally on device
+- Notice and event publishing is local-only and not shared across devices
+- Placement, timetable, and contact content are still static demo data
+- No image upload, file attachments, or remote sync
 
 ## Next improvements
 
-- Add notice detail and event detail screens
 - Replace mock data with real college content sources
-- Connect notices and placement updates to a backend
-- Add student login
+- Replace local admin auth with a real backend-authenticated staff flow
+- Move notices and events from local storage to a remote database/API
+- Add richer editor controls and media support
 - Add push notifications for urgent notices and placement updates

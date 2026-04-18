@@ -44,7 +44,7 @@ export type TpoContact = {
 export type QuickAction = {
   label: string;
   icon: "calendar-outline" | "call-outline" | "person-circle-outline";
-  href: "/timetable" | "/contacts" | "/profile";
+  href: "/timetable" | "/contacts" | "/admin";
 };
 
 export type TimetableClass = {
@@ -84,9 +84,9 @@ export const quickActions: QuickAction[] = [
     href: "/contacts",
   },
   {
-    label: "Login",
+    label: "Admin",
     icon: "person-circle-outline",
-    href: "/profile",
+    href: "/admin",
   },
 ];
 
@@ -311,9 +311,3 @@ export const contacts: Contact[] = [
     phone: "+91 89685 53073",
   },
 ];
-
-export const authPlaceholder = {
-  title: "Student login is not active yet",
-  message:
-    "This screen reserves the account area for later. For now, keep the UI light and use it as a placeholder for profile, notifications, and saved preferences.",
-};

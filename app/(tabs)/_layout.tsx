@@ -88,6 +88,20 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: 'Admin',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+              color={color}
+              focused={focused}
+              name="person-circle"
+              outlineName="person-circle-outline"
+            />
+          ),
+        }}
+      />
       <Tabs.Screen name="academics" options={{ href: null }} />
       <Tabs.Screen name="campus" options={{ href: null }} />
       <Tabs.Screen name="help" options={{ href: null }} />

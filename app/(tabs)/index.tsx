@@ -1,19 +1,54 @@
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
 import { View } from "react-native";
 
 import { Card, Page, QuickActionCard, SectionTitle } from "../../components/ui";
-import { events, notices, quickActions } from "../../data/college-data";
+import { quickActions } from "../../data/college-data";
+import {
+  StoredEvent,
+  StoredNotice,
+  getPublishedEvents,
+  getPublishedNotices,
+} from "../../lib/content-store";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const featuredNotice = notices.find((notice) => notice.featured);
+  const [notices, setNotices] = useState<StoredNotice[]>([]);
+  const [events, setEvents] = useState<StoredEvent[]>([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+
+      async function loadHomeFeed() {
+        const [nextNotices, nextEvents] = await Promise.all([
+          getPublishedNotices(),
+          getPublishedEvents(),
+        ]);
+
+        if (isActive) {
+          setNotices(nextNotices);
+          setEvents(nextEvents);
+        }
+      }
+
+      loadHomeFeed();
+
+      return () => {
+        isActive = false;
+      };
+    }, [])
+  );
+
+  const featuredNotice =
+    notices.find((notice) => notice.featured) ?? notices[0] ?? null;
 
   return (
     <Page
       headerAction={{
         icon: "person-circle-outline",
-        label: "Open profile placeholder",
-        onPress: () => router.push("/profile"),
+        label: "Open admin login",
+        onPress: () => router.push("/admin"),
       }}
     >
       <SectionTitle title="Quick Actions" />
@@ -41,7 +76,7 @@ export default function HomeScreen() {
             body={featuredNotice.excerpt}
             featured
             pinned={featuredNotice.pinned}
-            onPress={() => router.push("/notices")}
+            onPress={() => router.push(`/notices/${featuredNotice.id}`)}
           />
         </>
       ) : null}
@@ -59,7 +94,7 @@ export default function HomeScreen() {
           meta={event.date}
           leading={event.venue}
           body={event.description}
-          onPress={() => router.push("/events")}
+          onPress={() => router.push(`/events/${event.id}`)}
         />
       ))}
     </Page>
